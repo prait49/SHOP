@@ -1,7 +1,4 @@
 <template>
-
-    <p >{{ currentTime }}</p>
-
   <div class = "container">
     <h1 class = "text-center"> Таблица заказов</h1>
     <table>
@@ -15,7 +12,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="order in orders" v-bind:key="order.id">
+      <tr v-for="(order,index) in orders" v-bind:key="order.id"  :id="'object'+(order.id)">
         <td> {{order.id}}</td>
         <td> {{order.name}}</td>
         <td> {{order.address}}</td>
@@ -49,34 +46,9 @@ export default {
         console.error('Ошибка получения данных заказов:', error);
       });
     },
-
 },};
 </script>
 <style>
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
 
-th, td {
-  text-align: left;
-  padding: 8px;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-body {
-  display: flex;
-  place-items: center;
-  flex-direction: column;
-}
-p, h1{
-  text-align: center;
-}
 
 </style>

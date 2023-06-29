@@ -7,15 +7,23 @@
   <body>
     <script type="module" src="src/main.js"></script>
     <div id="time">Дата:</div>
-    <div id="app" style="margin: 50px">
-    </div>
     <div id="order"></div>
-    <br>
     <div id="orderDetail"></div>
 
 
   </body>
-
+    <script>
+    function highlightObject(link) {
+        var targetId = link.getAttribute("href").substring(1);
+        var obj = document.getElementById(targetId);
+        // Добавляем класс "highlight" к объекту
+        obj.classList.add("highlight");
+        // Через определенное время удаляем класс "highlight"
+        setTimeout(function() {
+            obj.classList.remove("highlight");
+        }, 2000); // 2000 миллисекунд (2 секунды)
+    }
+    </script>
 
 
 </html>
