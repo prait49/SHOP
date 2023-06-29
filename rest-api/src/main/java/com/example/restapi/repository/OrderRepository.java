@@ -9,7 +9,4 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-
-    //Данный метод позволяет найти данные заказов по id
-    List<Order> findById (int id);
 }

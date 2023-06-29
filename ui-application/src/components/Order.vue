@@ -1,4 +1,7 @@
 <template>
+
+    <p >{{ currentTime }}</p>
+
   <div class = "container">
     <h1 class = "text-center"> Таблица заказов</h1>
     <table>
@@ -9,7 +12,6 @@
         <th> Адрес заказчика</th>
         <th> Общая сумма заказа</th>
         <th> Дата создания заказа</th>
-        <th> Детали заказа</th>
       </tr>
       </thead>
       <tbody>
@@ -19,15 +21,11 @@
         <td> {{order.address}}</td>
         <td> {{order.order_price}}</td>
         <td> {{order.create_date}}</td>
-        <td> {{order.orderDetails}}</td>
       </tr>
       </tbody>
     </table>
+  </div>
 
-  </div>
-  <div>
-    <p >{{ currentTime }}</p>
-  </div>
 </template>
 
 <script>
@@ -37,29 +35,21 @@ export default {
   data() {
     return {
       orders: [],
-      currentTime:'',
     };
   },
   mounted() {
     this.fetchOrder();
-    this.callController();
   },
   methods: {
     fetchOrder() {
-      axios.get('http://localhost:8081/api/order')
+      axios.get('http://localhost:8081/api/orders')
           .then(response => {
             this.orders = response.data;
           }).catch(error => {
         console.error('Ошибка получения данных заказов:', error);
       });
     },
-    callController() {
-      axios.get('http://localhost:8080')
-          .then(response => {
-            this.currentTime = response.data;
-          }).catch(error => {
-        console.error('Ошибка получения времени:', error);
-      });},
+
 },};
 </script>
 <style>
@@ -68,9 +58,25 @@ table {
   width: 100%;
 }
 
-table, th, td {
-  border: 1px solid black;
-  padding: 8px;
+th, td {
   text-align: left;
+  padding: 8px;
 }
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+body {
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+}
+p, h1{
+  text-align: center;
+}
+
 </style>

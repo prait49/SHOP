@@ -1,7 +1,7 @@
 package com.example.restapi.controllers;
 
 import com.example.restapi.models.Order;
-import com.example.restapi.models.OrderDetails;
+import com.example.restapi.models.OrderDetail;
 import com.example.restapi.repository.OrderRepository;
 import com.example.restapi.service.OrderDetailsService;
 import com.example.restapi.service.OrderService;
@@ -22,12 +22,19 @@ public class MainController {
 
     private final OrderDetailsService orderDetailsService;
 
-
-    // Данный метод позволяет список всех заказов передать в представление
-    @GetMapping("/order")
-    public List<Order> fetchOrder(){
+    // Данный метод позволяет вернуть список всех заказов
+    @GetMapping("/orders")
+    public List<Order> getAllOrder(){
         return orderService.getAllOrder();
     }
+
+    @GetMapping("/orders/detail")
+    public List<OrderDetail> getAllOrderDetail(){
+        return orderDetailsService.getAllOrderDetails();
+    }
+
+
+
 
 //    // Данный метод позволяет вернуть представление с добавлением заказов и
 //    @GetMapping("/order/new")

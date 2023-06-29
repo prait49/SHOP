@@ -22,17 +22,17 @@ public class OrderService {
     }
 
     //Данный метод добавляет заказы
-    @Transactional
-    //Данный метод позволяет добавить новый заказ
-    public void orderAdd(Order order){
-        orderRepository.save(order);
-    }
-
-    @Transactional
-    //Данный метод обновляет данные заказов
-    public void updateOrder(int id, Order order){
-        order.setId(id);
-        orderRepository.save(order);
-
-    }
+//    @Transactional
+//    //Данный метод позволяет добавить новый заказ
+//    public void orderAdd(Order order){
+//        orderRepository.save(order);
+//    }
+//
+//    @Transactional
+//    //Данный метод обновляет данные заказов
+//    public void updateOrder(int id, Order order){
+//        order.setId(id);
+//        orderRepository.save(order);
+//
+//    }
 }
