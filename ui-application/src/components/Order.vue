@@ -25,7 +25,7 @@
     <fieldset>
       <legend>Доавление новых заказов:</legend>
       <form v-on:submit.prevent="addOrder">
-        <label for="customer-name">Имя заказчика:</label>
+        <label >Имя заказчика:</label>
         <input type="text" id="customer-name" name="customer-name" v-model="newOrder.name">
         <label for="customer-name">Адрес заказчика:</label>
         <input type="text" id="customer-address" name="customer-address" v-model="newOrder.address">
@@ -40,25 +40,20 @@
 </template>
 <script>
 import axios from 'axios';
-
 export default {
   name: "Order",
-
-  props: ['orders'],
-
-
+  props: ['orders', 'fetchOrder'],
   data() {
     return {
       newOrder: {},
     };
   },
-
   methods: {
     addOrder() {
       axios.post('http://localhost:8081/api/orders', this.newOrder)
           .then(response => {
             this.newOrder = {};
-            this.fetchOrder();
+            this.fetchOrders();
           })
     },
   },

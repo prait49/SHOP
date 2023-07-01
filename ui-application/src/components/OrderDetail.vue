@@ -32,8 +32,11 @@
         <label>Количество:</label>
         <input type="text" v-model="newOrderDetail.quantity">
         <label>Сылка на заказ :</label>
-        <select v-for="(order, index) in orders" v-bind:key="order.id">
-          <option :value="index++">Заказ№ {{ ordDet.order.id }}</option>
+        <select v-model="newOrderDetail.order" >
+          <option v-for="(order, index) in orders"
+                  v-bind:key="order.id"
+                  :value="index++"
+          >{{ order.id }}</option>
         </select>
         <input type="submit" value="Добавить деталь заказа">
       </form>
@@ -46,6 +49,7 @@ import axios from 'axios';
 
 export default {
   name: "OrderDetail",
+  props: ['orders'],
   data() {
     return {
       ordersDetail: [],
@@ -54,17 +58,17 @@ export default {
     };
   },
   mounted() {
-    this.fetchOrder();
+    this.fetchOrderDetail();
   },
   methods: {
     addOrderDetail() {
       axios.post('http://localhost:8081/api/orders/detail', this.newOrderDetail)
           .then(response => {
             this.newOrderDetail = {};
-            this.fetchOrder();
+            this.fetchOrderDetail();
           })
     },
-    fetchOrder() {
+    fetchOrderDetail() {
       axios.get('http://localhost:8081/api/orders/detail')
           .then(response => {
             this.ordersDetail = response.data;

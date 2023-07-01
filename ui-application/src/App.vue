@@ -8,10 +8,8 @@ import Time from "@/components/Time.vue";
 <template>
 
   <div id="time"><Time /></div>
-  <div id="order"> <Order :orders="orders" /></div>
-  <div id="OrderDetail"><OrderDetail :orders="orders" /></div>
-
-
+  <div id="order"> <Order :orders="orders" :fetchOrders="fetchOrders"/></div>
+<!--  <div id="OrderDetail"><OrderDetail :orders="orders" /></div>-->
 
 </template>
 
