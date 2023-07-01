@@ -17,7 +17,7 @@ public class TimeController {
     @GetMapping("/")
     public String getCurrentTime() {
         LocalDate currentDate  = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return  currentDate.format(formatter);
     }
 

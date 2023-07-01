@@ -6,13 +6,10 @@
   </head>
   <body>
     <script type="module" src="src/main.js"></script>
-    <div id="time">Дата:</div>
-    <div id="order"></div>
-    <div id="orderDetail"></div>
-
-
+    <div id="App"></div>
   </body>
-    <script>
+</html>
+<script>
     function highlightObject(link) {
         var targetId = link.getAttribute("href").substring(1);
         var obj = document.getElementById(targetId);
@@ -23,7 +20,4 @@
             obj.classList.remove("highlight");
         }, 2000); // 2000 миллисекунд (2 секунды)
     }
-    </script>
-
-
-</html>
+</script>

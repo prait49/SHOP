@@ -1,5 +1,5 @@
 <template>
-  <h1>{{currentTime}}</h1>
+  <h1>Дата: {{currentTime}}</h1>
 </template>
 
 <script>

@@ -21,12 +21,11 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    //Данный метод добавляет заказы
-//    @Transactional
-//    //Данный метод позволяет добавить новый заказ
-//    public void orderAdd(Order order){
-//        orderRepository.save(order);
-//    }
+    @Transactional
+    //Данный метод позволяет добавить новый заказ
+    public Order orderAdd(Order order) {
+        return orderRepository.save(order);
+    }
 //
 //    @Transactional
 //    //Данный метод обновляет данные заказов

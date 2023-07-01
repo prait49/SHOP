@@ -23,6 +23,11 @@ public class OrderDetailsService {
         return orderDetailsRepository.findAll();
     }
 
+    @Transactional
+    //Данный метод позволяет добавить новую деталь заказа
+    public OrderDetail orderDetailAdd(OrderDetail orderDetail) {
+        return orderDetailsRepository.save(orderDetail);
+    }
 
 
 
