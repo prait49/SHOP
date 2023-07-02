@@ -23,6 +23,7 @@
           <button @click="deleteOrder(order.id)">Удалить</button>
           <button @click="putOrder(order.id)">Редактировать</button>
         </td>
+
       </tr>
       </tbody>
     </table>
@@ -86,6 +87,15 @@ export default {
             console.error(error+"ТЕСТ ");
           });
     },
+    editOrder(id){
+      axios.put(`http://localhost:8081/api/orders/edit/${id}`)
+          .then(response => {
+            this.fetchOrder();
+          })
+          .catch(error => {
+            console.error(error+"ТЕСТ ");
+          });
+    }
   },
 
 };

@@ -63,4 +63,11 @@ public class MainController {
         orderDetailsService.deleteOrderDetailId(id);
     }
 
+
+    //Данный метод редактирования данных заказов
+    @PutMapping("orders/edit/{id}")
+    public void editOrderId (@RequestBody Order newOrder, @PathVariable ("id") int id){
+        orderService.editOrderId(id, newOrder);
+    }
+
 }
