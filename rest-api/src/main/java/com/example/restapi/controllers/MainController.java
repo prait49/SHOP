@@ -7,6 +7,8 @@ import com.example.restapi.service.OrderDetailsService;
 import com.example.restapi.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,10 +42,18 @@ public class MainController {
          return orderService.orderAdd(newOrder);
     }
 
-    // Данный метод позволяет добавить детали заказов
+//     Данный метод позволяет добавить детали заказов
+//    @PostMapping("/orders/detail")
+//    public OrderDetail addOrderDetail(@RequestBody OrderDetail newOrderDetail) {
+//
+//        return orderDetailsService.orderDetailAdd(newOrderDetail);
+//    }
     @PostMapping("/orders/detail")
     public OrderDetail addOrderDetail(@RequestBody OrderDetail newOrderDetail) {
+        Order order = orderService.getOrderId(newOrderDetail.getOrder().getId());
+        newOrderDetail.setOrder(order);
         return orderDetailsService.orderDetailAdd(newOrderDetail);
     }
+
 
 }

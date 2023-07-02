@@ -26,13 +26,13 @@
       <legend>Доавление новых заказов:</legend>
       <form v-on:submit.prevent="addOrder">
         <label >Имя заказчика:</label>
-        <input type="text" id="customer-name" name="customer-name" v-model="newOrder.name">
+        <input type="text"  v-model="newOrder.name">
         <label for="customer-name">Адрес заказчика:</label>
-        <input type="text" id="customer-address" name="customer-address" v-model="newOrder.address">
+        <input type="text"  v-model="newOrder.address">
         <label for="customer-name">Общая сумма заказа:</label>
-        <input type="text" id="order-price" name="order-price" v-model="newOrder.order_price">
+        <input type="text"  v-model="newOrder.order_price">
         <label for="customer-name">Дата создания заказа:</label>
-        <input type="date" id="create-date" name="create-date" v-model="newOrder.create_date">
+        <input type="date"  v-model="newOrder.create_date">
         <input type="submit" value="Добавить заказ">
       </form>
     </fieldset>
@@ -53,7 +53,7 @@ export default {
       axios.post('http://localhost:8081/api/orders', this.newOrder)
           .then(response => {
             this.newOrder = {};
-            this.fetchOrders();
+            this.fetchOrder();
           })
     },
   },

@@ -23,7 +23,7 @@
       </tbody>
     </table>
     <fieldset>
-      <legend>Доавление новых деталей заказов:</legend>
+      <legend>Добавление новых деталей заказов:</legend>
       <form v-on:submit.prevent="addOrderDetail">
         <label>Серийный номер товара :</label>
         <input type="text" v-model="newOrderDetail.product_serial_number">
@@ -33,10 +33,10 @@
         <input type="text" v-model="newOrderDetail.quantity">
         <label>Сылка на заказ :</label>
         <select v-model="newOrderDetail.order" >
-          <option v-for="(order, index) in orders"
+          <option v-for="(order) in orders"
                   v-bind:key="order.id"
-                  :value="index++"
-          >{{ order.id }}</option>
+                  :value="order"
+          >Заказ №{{ order.id }}</option>
         </select>
         <input type="submit" value="Добавить деталь заказа">
       </form>
