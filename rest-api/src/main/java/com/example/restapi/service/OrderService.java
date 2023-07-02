@@ -19,7 +19,7 @@ public class OrderService {
 
 
     //Данный метод позовляет получить список всех заказов
-    public List<Order> getAllOrder(){
+    public List<Order> getAllOrder() {
         return orderRepository.findAll();
     }
 
@@ -29,18 +29,16 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
+    //Данный метод позволяет найти заказ по id
     @Transactional
-    public Order getOrderId(int id){
-        Optional<Order> optionalOrder=orderRepository.findById(id);
+    public Order getOrderId(int id) {
+        Optional<Order> optionalOrder = orderRepository.findById(id);
         return optionalOrder.orElse(null);
     }
 
-
-//    @Transactional
-//    //Данный метод обновляет данные заказов
-//    public void updateOrder(int id, Order order){
-//        order.setId(id);
-//        orderRepository.save(order);
-//
-//    }
+    //Данный метод позволяет удалить заказ по id
+    @Transactional
+    public void deleteOrderId(int id) {
+        orderRepository.deleteById(id);
+    }
 }

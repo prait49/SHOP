@@ -9,6 +9,7 @@
         <th>Название товара</th>
         <th>Количество</th>
         <th>Ссылка на заказ</th>
+        <td>Работа с деталями заказов</td>
       </tr>
       </thead>
       <tbody>
@@ -18,6 +19,9 @@
         <td> {{ ordDet.product_name }}</td>
         <td> {{ ordDet.quantity }}</td>
         <td><a :href="'#object'+(ordDet.order.id)" onclick="highlightObject(this)"> Заказ№ {{ ordDet.order.id }}</a>
+        </td>
+        <td>
+          <button @click="deleteOrderDetail(ordDet.id)">Delete</button>
         </td>
       </tr>
       </tbody>
@@ -75,6 +79,15 @@ export default {
           }).catch(error => {
         console.error('Ошибка получения данных заказов:', error);
       });
+    },
+    deleteOrderDetail(id) {
+      axios.delete(`http://localhost:8081/api/orders/detail/${id}`)
+          .then(response => {
+            this.fetchOrderDetail();
+          })
+          .catch(error => {
+            console.error(error+"ТЕСТ ");
+          });
     },
   },
 };

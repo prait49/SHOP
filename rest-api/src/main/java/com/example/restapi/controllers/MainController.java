@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,13 +26,13 @@ public class MainController {
 
     // Данный метод позволяет вернуть список всех заказов
     @GetMapping("/orders")
-    public List<Order> getAllOrder(){
+    public List<Order> getAllOrder() {
         return orderService.getAllOrder();
     }
 
     // Данный метод позволяет вернуть список всех деталей заказов
     @GetMapping("/orders/detail")
-    public List<OrderDetail> getAllOrderDetail(){
+    public List<OrderDetail> getAllOrderDetail() {
         return orderDetailsService.getAllOrderDetails();
     }
 
@@ -39,15 +40,10 @@ public class MainController {
     // Данный метод позволяет добавить заказы
     @PostMapping("/orders")
     public Order addOrder(@RequestBody Order newOrder) {
-         return orderService.orderAdd(newOrder);
+        return orderService.orderAdd(newOrder);
     }
 
-//     Данный метод позволяет добавить детали заказов
-//    @PostMapping("/orders/detail")
-//    public OrderDetail addOrderDetail(@RequestBody OrderDetail newOrderDetail) {
-//
-//        return orderDetailsService.orderDetailAdd(newOrderDetail);
-//    }
+    // Данный метод позволяет добавить деталь любого заказа
     @PostMapping("/orders/detail")
     public OrderDetail addOrderDetail(@RequestBody OrderDetail newOrderDetail) {
         Order order = orderService.getOrderId(newOrderDetail.getOrder().getId());
@@ -55,5 +51,16 @@ public class MainController {
         return orderDetailsService.orderDetailAdd(newOrderDetail);
     }
 
+    //    Данный метод позволяет удалить заказ по id
+    @DeleteMapping("orders/{id}")
+    public void deleteOrder(@PathVariable("id") int id) {
+        orderService.deleteOrderId(id);
+    }
+
+    //    Данный метод позволяет удалить деталь заказ по id
+    @DeleteMapping("orders/detail/{id}")
+    public void deleteOrderDetail(@PathVariable("id") int id) {
+        orderDetailsService.deleteOrderDetailId(id);
+    }
 
 }

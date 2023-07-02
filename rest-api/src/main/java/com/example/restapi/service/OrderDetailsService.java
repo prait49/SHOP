@@ -29,20 +29,12 @@ public class OrderDetailsService {
         return orderDetailsRepository.save(orderDetail);
     }
 
+    //Данный метод позволяет удалить деталь заказа по id
+    @Transactional
+    public void deleteOrderDetailId(int id) {
+        orderDetailsRepository.deleteById(id);
+    }
 
-
-//    @Transactional
-//    //Данный метод позволяет добавить новые детали заказа
-//    public void orderDetailsAdd(OrderDetails orderDetails){
-//        orderDetailsRepository.save(orderDetails);
-//    }
-//
-//    @Transactional
-//    //Данный метод обновляет данные деталлей заказа
-//    public void updateOrderDetails(int id, OrderDetails orderDetails){
-//        orderDetails.setId(id);
-//        orderDetailsRepository.save(orderDetails);
-//    }
 
 }
 
