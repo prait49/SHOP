@@ -35,6 +35,15 @@ public class OrderDetailsService {
         orderDetailsRepository.deleteById(id);
     }
 
+    //Данный метод позволяет обновить данные о заказе по id
+    @Transactional
+    public void editOrderId(int id, Order order){
+        order.setId(id);
+        orderRepository.save(order);
+    }
+
+
+
 
 }
 

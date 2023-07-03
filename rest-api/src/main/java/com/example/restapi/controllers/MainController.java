@@ -70,4 +70,11 @@ public class MainController {
         orderService.editOrderId(id, newOrder);
     }
 
+
+    //Данный метод редактирования деталей заказов
+    @PutMapping("orders/detail/edit/{id}")
+    public void editOrderDetailId (@RequestBody OrderDetail newOrderDetail, @PathVariable ("id") int id){
+        orderDetailsService.editOrderDetailId(id, newOrderDetail);
+    }
+
 }
