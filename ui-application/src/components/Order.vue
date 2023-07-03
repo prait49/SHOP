@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div class="container">
     <h1 class="text-center"> Таблица заказов</h1>
     <table>
@@ -21,27 +21,27 @@
         <td row-reverse> {{ order.createDate }}</td>
         <td>
           <button @click="deleteOrder(order.id)">Удалить</button>
-          <button @click="() => getEditOrder(order)">Редактировать</button>
+          <button @click="() => { backgroundColor(); getEditOrder(order)}">Редактировать</button>
         </td>
       </tr>
       </tbody>
     </table>
-    <div id="editing" v-for="(order) in orders" v-bind:key="order.id">
-      <fieldset v-if="editingOrderId === order.id">
-        <legend>Редактирование заказов:</legend>
-        <form id="editingForm" v-on:submit.prevent="editOrder(putOrder.id)">
-          <label>Имя заказчика:</label>
-          <input type="text" v-model="putOrder.name">
-          <label>Адрес заказчика:</label>
-          <input type="text" v-model="putOrder.address">
-          <label>Общая сумма заказа:</label>
-          <input type="text" v-model="putOrder.orderPrice">
-          <label> Дата создания заказа:</label>
-          <input type="date" v-model="putOrder.createDate">
-          <input type="submit" value="Сохранить изменения">
-          <button @click="null">Закрыть</button>
-        </form>
-      </fieldset>
+      <div id="editing" v-for="(order) in orders" v-bind:key="order.id">
+        <fieldset v-if="editingOrderId === order.id">
+          <legend>Редактирование заказов:</legend>
+          <form id="editingForm" v-on:submit.prevent="editOrder(putOrder.id)">
+            <label>Имя заказчика:</label>
+            <input type="text" v-model="putOrder.name">
+            <label>Адрес заказчика:</label>
+            <input type="text" v-model="putOrder.address">
+            <label>Общая сумма заказа:</label>
+            <input type="text" v-model="putOrder.orderPrice">
+            <label> Дата создания заказа:</label>
+            <input type="date" v-model="putOrder.createDate">
+            <input type="submit"  value="Сохранить изменения" @click="backgroundColor()">
+            <button @click="() =>{null; backgroundColor()}">Закрыть</button>
+          </form>
+        </fieldset>
     </div>
     <fieldset>
       <legend>Добавление новых заказов:</legend>
@@ -59,13 +59,15 @@
     </fieldset>
   </div>
 
+
+
 </template>
 <script>
 import axios from 'axios';
 
 export default {
   name: "Order",
-  props: ['orders', 'fetchOrder'],
+  props: ['orders', 'fetchOrder','backgroundColor'],
   data() {
     return {
       newOrder: {},
@@ -100,21 +102,13 @@ export default {
           });
     },
     getEditOrder(objOrder) {
-      if (this.editingOrderId === objOrder.id) {
-        this.editingOrderId = null;
-      } else {
-        this.editingOrderId = objOrder.id;
-      }
+      this.editingOrderId = objOrder.id;
       this.putOrder = {...objOrder};
     },
-    backgroundColor() {
 
-    }
   },
-
 
 };
 </script>
 <style>
-
 </style>

@@ -22,33 +22,34 @@
         </td>
         <td>
           <button @click="deleteOrderDetail(ordDet.id)">Удалить</button>
-          <button @click="() => getEditOrderDetail(ordDet)">Редактировать</button>
+          <button @click="() => { getEditOrderDetail(ordDet); backgroundColor() }">Редактировать</button>
         </td>
       </tr>
       </tbody>
     </table>
       <div id="editing" v-for="(ordDet) in ordersDetail" v-bind:key="ordersDetail.id">
-      <fieldset v-if="editingOrderDetailId === ordDet.id">
-        <legend>Редактирование  деталей заказов:</legend>
+        <fieldset v-if="editingOrderDetailId === ordDet.id">
+          <legend>Редактирование деталей заказов:</legend>
           <form id="editingForm" v-on:submit.prevent="editOrderDetail(putOrderDetail.id)">
-          <label>Серийный номер товара:</label>
-          <input type="text" v-model="putOrderDetail.productSerialNumber" >
-          <label>Название товара:</label>
-          <input type="text" v-model="putOrderDetail.productName" >
-          <label>Количество:</label>
-          <input type="text" v-model="putOrderDetail.quantity" >
-          <label>Сылка на заказ :</label>
-          <select v-model="putOrderDetail.order" >
-            <option v-for="(order) in orders"
-                    v-bind:key="order.id"
-                    :value="order"
-            >Заказ №{{ order.id }}</option>
-          </select>
-          <input type="submit" value="Сохранить изменения">
-          <button  @click="null">Закрыть</button>
-        </form>
-      </fieldset>
-      </div>
+            <label>Серийный номер товара:</label>
+            <input type="text" v-model="putOrderDetail.productSerialNumber">
+            <label>Название товара:</label>
+            <input type="text" v-model="putOrderDetail.productName">
+            <label>Количество:</label>
+            <input type="text" v-model="putOrderDetail.quantity">
+            <label>Сылка на заказ :</label>
+            <select v-model="putOrderDetail.order">
+              <option v-for="(order) in orders"
+                      v-bind:key="order.id"
+                      :value="order"
+              >Заказ №{{ order.id }}
+              </option>
+            </select>
+            <input type="submit"  value="Сохранить изменения" @click="backgroundColor()">
+            <button @click="() =>{null; backgroundColor()}">Закрыть</button>
+          </form>
+        </fieldset>
+    </div>
     <fieldset>
       <legend>Добавление новых деталей заказов:</legend>
       <form id="ADD" v-on:submit.prevent="addOrderDetail">
@@ -59,11 +60,12 @@
         <label>Количество:</label>
         <input type="text" v-model="newOrderDetail.quantity">
         <label>Сылка на заказ :</label>
-        <select v-model="newOrderDetail.order" >
+        <select v-model="newOrderDetail.order">
           <option v-for="(order) in orders"
                   v-bind:key="order.id"
                   :value="order"
-          >Заказ №{{ order.id }}</option>
+          >Заказ №{{ order.id }}
+          </option>
         </select>
         <input class="box1" type="submit" value="Добавить деталь заказа">
       </form>
@@ -76,7 +78,7 @@ import axios from 'axios';
 
 export default {
   name: "OrderDetail",
-  props: ['orders'],
+  props: ['orders', 'backgroundColor'],
   data() {
     return {
       ordersDetail: [],
@@ -109,10 +111,10 @@ export default {
             this.fetchOrderDetail();
           })
           .catch(error => {
-            console.error(error+"ТЕСТ ");
+            console.error(error + "ТЕСТ ");
           });
     },
-    editOrderDetail(id){
+    editOrderDetail(id) {
       axios.put(`http://localhost:8081/api/orders/detail/edit/${id}`, this.putOrderDetail)
           .then(response => {
             this.fetchOrderDetail();
@@ -122,13 +124,8 @@ export default {
             console.error(error);
           });
     },
-    getEditOrderDetail(objOrderDetail){
-      if(this.editingOrderDetailId === objOrderDetail.id) {
-        this.editingOrderDetailId = null;
-      }
-      else{
+    getEditOrderDetail(objOrderDetail) {
         this.editingOrderDetailId = objOrderDetail.id;
-      }
       this.putOrderDetail = {...objOrderDetail};
     }
   },

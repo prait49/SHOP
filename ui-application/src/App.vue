@@ -7,9 +7,9 @@ import Time from "@/components/Time.vue";
 <template>
 
   <div id="time"><Time /></div>
-  <div id="order"> <Order :orders="orders" :fetchOrder="fetchOrder"/></div>
-  <div id="OrderDetail"><OrderDetail :orders="orders" /></div>
-
+  <div id="order"> <Order :orders="orders" :fetchOrder="fetchOrder"  :backgroundColor="backgroundColor"/></div>
+  <div id="OrderDetail"><OrderDetail :orders="orders"  :backgroundColor="backgroundColor"/></div>
+  <div id="background"></div>
 </template>
 
 <script>
@@ -35,6 +35,15 @@ export default {
         console.error('Ошибка получения данных заказов:', error);
       });
     },
+    backgroundColor() {
+      let div = document.getElementById('background');
+      if (div.style.display === 'block') {
+        div.style.display='none';
+      }
+      else {
+        div.style.display = 'block';
+      }
+    }
   },
 };
 
