@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h1 class="text-center"> Таблица заказов</h1>
-    <div >
       <table >
         <thead>
         <tr>
@@ -19,7 +18,7 @@
           <td> {{ order.name }}</td>
           <td> {{ order.address }}</td>
           <td> {{ order.order_price }}</td>
-          <td> {{ order.create_date }}</td>
+          <td row-reverse>  {{ order.create_date }}</td>
           <td>
             <button @click="deleteOrder(order.id)">Удалить</button>
             <button @click="() => getEditOrder(order)">Редактировать</button>
@@ -43,10 +42,9 @@
           <button  @click="null">Закрыть</button>
         </form>
       </fieldset>
-      </div>
     </div >
     <fieldset >
-      <legend>Доавление новых заказов:</legend>
+      <legend>Добавление новых заказов:</legend>
       <form id="ADD" v-on:submit.prevent="addOrder">
         <label>Имя заказчика:</label>
         <input type="text" v-model="newOrder.name">
@@ -109,8 +107,15 @@ export default {
         this.editingOrderId = objOrder.id;
       }
       this.putOrder = {...objOrder};
+    },
+    backgroundColor(){
+
     }
   },
+
+
+
+
 };
 </script>
 <style>

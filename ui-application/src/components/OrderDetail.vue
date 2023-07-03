@@ -30,7 +30,7 @@
       <div id="editing" v-for="(ordDet) in ordersDetail" v-bind:key="ordersDetail.id">
       <fieldset v-if="editingOrderDetailId === ordDet.id">
         <legend>Редактирование  деталей заказов:</legend>
-        <form v-on:submit.prevent="editOrderDetail(putOrderDetail.id)">
+          <form id="editingForm" v-on:submit.prevent="editOrderDetail(putOrderDetail.id)">
           <label>Серийный номер товара:</label>
           <input type="text" v-model="putOrderDetail.product_serial_number" >
           <label>Название товара:</label>
@@ -45,6 +45,7 @@
             >Заказ №{{ order.id }}</option>
           </select>
           <input type="submit" value="Сохранить изменения">
+          <button  @click="null">Закрыть</button>
         </form>
       </fieldset>
       </div>
