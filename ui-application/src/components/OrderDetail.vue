@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1 class="text-center"> Таблица деталей заказов</h1>
-    <div v-for="(ordDet) in ordersDetail" v-bind:key="ordersDetail.id">
     <table>
       <thead>
       <tr>
@@ -14,7 +13,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr >
+      <tr v-for="(ordDet) in ordersDetail" v-bind:key="ordersDetail.id">
         <td> {{ ordDet.id }}</td>
         <td> {{ ordDet.product_serial_number }}</td>
         <td> {{ ordDet.product_name }}</td>
@@ -28,6 +27,7 @@
       </tr>
       </tbody>
     </table>
+      <div id="editing" v-for="(ordDet) in ordersDetail" v-bind:key="ordersDetail.id">
       <fieldset v-if="editingOrderDetailId === ordDet.id">
         <legend>Редактирование  деталей заказов:</legend>
         <form v-on:submit.prevent="editOrderDetail(putOrderDetail.id)">
@@ -47,10 +47,10 @@
           <input type="submit" value="Сохранить изменения">
         </form>
       </fieldset>
-    </div>
+      </div>
     <fieldset>
       <legend>Добавление новых деталей заказов:</legend>
-      <form v-on:submit.prevent="addOrderDetail">
+      <form id="ADD" v-on:submit.prevent="addOrderDetail">
         <label>Серийный номер товара:</label>
         <input type="text" v-model="newOrderDetail.product_serial_number">
         <label>Название товара:</label>
@@ -64,7 +64,7 @@
                   :value="order"
           >Заказ №{{ order.id }}</option>
         </select>
-        <input type="submit" value="Добавить деталь заказа">
+        <input class="box1" type="submit" value="Добавить деталь заказа">
       </form>
     </fieldset>
   </div>

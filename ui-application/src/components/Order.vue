@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1 class="text-center"> Таблица заказов</h1>
-    <div v-for="(order) in orders" v-bind:key="order.id" :id="'object'+(order.id)">
-      <table>
+    <div >
+      <table >
         <thead>
         <tr>
           <th> ID заказа</th>
@@ -14,7 +14,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr v-for="(order) in orders" v-bind:key="order.id" :id="'object'+(order.id)">
           <td> {{ order.id }}</td>
           <td> {{ order.name }}</td>
           <td> {{ order.address }}</td>
@@ -27,24 +27,27 @@
         </tr>
         </tbody>
       </table>
-      <fieldset v-if="editingOrderId === order.id">
+      <div id="editing" v-for="(order) in orders" v-bind:key="order.id" >
+      <fieldset v-if="editingOrderId === order.id" >
         <legend>Редактирование заказов:</legend>
-        <form v-on:submit.prevent="editOrder(putOrder.id)">
+        <form id="editingForm" v-on:submit.prevent="editOrder(putOrder.id)" >
           <label>Имя заказчика:</label>
           <input type="text" v-model="putOrder.name" >
           <label>Адрес заказчика:</label>
           <input type="text" v-model="putOrder.address" >
           <label>Общая сумма заказа:</label>
-          <input type="text" v-model="putOrder.order_price" >
-          <label>Дата создания заказа:</label>
-          <input type="date" v-model="putOrder.create_date">
-          <input type="submit" value="Сохранить изменения">
+          <input  type="text" v-model="putOrder.order_price" >
+          <label > Дата создания заказа:</label>
+          <input  type="date" v-model="putOrder.create_date">
+          <input  type="submit" value="Сохранить изменения">
+          <button  @click="null">Закрыть</button>
         </form>
       </fieldset>
-    </div>
-    <fieldset>
+      </div>
+    </div >
+    <fieldset >
       <legend>Доавление новых заказов:</legend>
-      <form v-on:submit.prevent="addOrder">
+      <form id="ADD" v-on:submit.prevent="addOrder">
         <label>Имя заказчика:</label>
         <input type="text" v-model="newOrder.name">
         <label for="customer-name">Адрес заказчика:</label>
@@ -53,10 +56,11 @@
         <input type="text" v-model="newOrder.order_price">
         <label for="customer-name">Дата создания заказа:</label>
         <input type="date" v-model="newOrder.create_date">
-        <input type="submit" value="Добавить заказ">
+        <input class="box1" type="submit" value="Добавить заказ">
       </form>
     </fieldset>
   </div>
+
 </template>
 <script>
 import axios from 'axios';
@@ -107,11 +111,8 @@ export default {
       this.putOrder = {...objOrder};
     }
   },
-
-
 };
 </script>
 <style>
-
 
 </style>
