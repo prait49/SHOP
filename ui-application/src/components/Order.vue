@@ -67,7 +67,6 @@ export default {
   data() {
     return {
       newOrder: {},
-      // putOrder: {},
       editingOrderId: null,
     };
   },
@@ -106,7 +105,6 @@ export default {
         this.editingOrderId = objOrder.id;
       }
       this.putOrder = {...objOrder};
-
     }
   },
 
