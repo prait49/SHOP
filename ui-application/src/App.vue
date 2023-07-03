@@ -2,7 +2,6 @@
 import Order from "@/components/Order.vue";
 import OrderDetail from "@/components/OrderDetail.vue";
 import Time from "@/components/Time.vue";
-
 </script>
 
 <template>
@@ -42,5 +41,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

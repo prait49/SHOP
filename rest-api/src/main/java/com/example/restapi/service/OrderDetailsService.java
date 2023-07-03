@@ -1,6 +1,5 @@
 package com.example.restapi.service;
 
-import com.example.restapi.models.Order;
 import com.example.restapi.models.OrderDetail;
 import com.example.restapi.repository.OrderDetailsRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +13,8 @@ import java.util.List;
 public class OrderDetailsService {
 
     private final OrderDetailsRepository orderDetailsRepository;
-
-
-
-    //Данный метод позовляет получить список всех заказов
-    public List<OrderDetail> getAllOrderDetails(){
-
+    //Данный метод позовляет получить список всех деталей заказов
+    public List<OrderDetail> getAllOrderDetails() {
         return orderDetailsRepository.findAll();
     }
 
@@ -37,13 +32,9 @@ public class OrderDetailsService {
 
     //Данный метод позволяет обновить данные о деталях заказов по id
     @Transactional
-    public void editOrderDetailId(int id, OrderDetail orderDetail){
+    public void editOrderDetailId(int id, OrderDetail orderDetail) {
         orderDetail.setId(id);
         orderDetailsRepository.save(orderDetail);
     }
-
-
-
-
 }
 

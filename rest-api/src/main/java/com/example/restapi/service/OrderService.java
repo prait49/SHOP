@@ -1,12 +1,10 @@
 package com.example.restapi.service;
 
 import com.example.restapi.models.Order;
-import com.example.restapi.models.OrderDetail;
 import com.example.restapi.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +14,6 @@ import java.util.Optional;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-
 
     //Данный метод позовляет получить список всех заказов
     public List<Order> getAllOrder() {
@@ -44,11 +41,10 @@ public class OrderService {
 
     //Данный метод позволяет обновить данные о заказе по id
     @Transactional
-    public void editOrderId(int id, Order order){
+    public void editOrderId(int id, Order order) {
         order.setId(id);
         orderRepository.save(order);
     }
-
 
 
 }

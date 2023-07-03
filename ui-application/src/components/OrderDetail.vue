@@ -15,8 +15,8 @@
       <tbody>
       <tr v-for="(ordDet) in ordersDetail" v-bind:key="ordersDetail.id">
         <td> {{ ordDet.id }}</td>
-        <td> {{ ordDet.product_serial_number }}</td>
-        <td> {{ ordDet.product_name }}</td>
+        <td> {{ ordDet.productSerialNumber }}</td>
+        <td> {{ ordDet.productName }}</td>
         <td> {{ ordDet.quantity }}</td>
         <td><a :href="'#object'+(ordDet.order.id)" onclick="highlightObject(this)"> Заказ№ {{ ordDet.order.id }}</a>
         </td>
@@ -32,9 +32,9 @@
         <legend>Редактирование  деталей заказов:</legend>
           <form id="editingForm" v-on:submit.prevent="editOrderDetail(putOrderDetail.id)">
           <label>Серийный номер товара:</label>
-          <input type="text" v-model="putOrderDetail.product_serial_number" >
+          <input type="text" v-model="putOrderDetail.productSerialNumber" >
           <label>Название товара:</label>
-          <input type="text" v-model="putOrderDetail.product_name" >
+          <input type="text" v-model="putOrderDetail.productName" >
           <label>Количество:</label>
           <input type="text" v-model="putOrderDetail.quantity" >
           <label>Сылка на заказ :</label>
@@ -53,9 +53,9 @@
       <legend>Добавление новых деталей заказов:</legend>
       <form id="ADD" v-on:submit.prevent="addOrderDetail">
         <label>Серийный номер товара:</label>
-        <input type="text" v-model="newOrderDetail.product_serial_number">
+        <input type="text" v-model="newOrderDetail.productSerialNumber">
         <label>Название товара:</label>
-        <input type="text" v-model="newOrderDetail.product_name">
+        <input type="text" v-model="newOrderDetail.productName">
         <label>Количество:</label>
         <input type="text" v-model="newOrderDetail.quantity">
         <label>Сылка на заказ :</label>
@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     addOrderDetail() {
-      axios.post('http://localhost:8081/api/orders/detail', this.newOrderDetail)
+      axios.post('http://localhost:8081/api/orders/detail/save', this.newOrderDetail)
           .then(response => {
             this.newOrderDetail = {};
             this.fetchOrderDetail();
@@ -119,7 +119,7 @@ export default {
             this.editingOrderDetailId = null;
           })
           .catch(error => {
-            console.error(error + "ТЕСТ ");
+            console.error(error);
           });
     },
     getEditOrderDetail(objOrderDetail){
