@@ -2,8 +2,6 @@ package com.example.restapi.controllers;
 
 
 import com.example.restapi.models.Order;
-import com.example.restapi.models.OrderDetail;
-import com.example.restapi.service.OrderDetailsService;
 import com.example.restapi.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

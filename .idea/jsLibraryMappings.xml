@@ -3,5 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$/time-service" libraries="{Node.js Core}" />
     <file url="file://$PROJECT_DIR$/ui-application" libraries="{Node.js Core}" />
+    <excludedPredefinedLibrary name="SHOP/untitled/node_modules" />
   </component>
 </project>

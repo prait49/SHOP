@@ -13,6 +13,7 @@ body {
   display: flex;
   place-items: center;
   flex-direction: column;
+  background: #ffffe2;
 }
 p, h1{
   text-align: center;
